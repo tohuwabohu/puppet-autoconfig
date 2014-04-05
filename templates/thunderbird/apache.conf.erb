@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+    DocumentRoot <%= @document_root %>
+    ServerAdmin webmaster@<%= @domain %>
+    ServerName <%= @server_name %>
+    <Directory <%= @document_root %>>
+        Order allow,deny
+        allow from all
+    </Directory>
+</VirtualHost>

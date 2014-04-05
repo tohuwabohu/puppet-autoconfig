@@ -1,0 +1,12 @@
+name 'tohuwabohu-autoconfig'
+version '1.0.0'
+source 'https://github.com/tohuwabohu/tohuwabohu-autoconfig.git'
+author 'Martin Meinhold'
+license 'Apache License, Version 2.0'
+summary 'Manage auto-discovery for service clients'
+description ''
+project_page 'https://github.com/tohuwabohu/tohuwabohu-autoconfig'
+
+dependency 'puppetlabs/stdlib', '4.x'
+dependency 'puppetlabs-concat', '1.x'
+dependency 'example42/puppi', '2.x'
