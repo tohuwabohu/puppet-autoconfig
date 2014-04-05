@@ -25,7 +25,7 @@ define autoconfig::thunderbird(
   $domain = $name,
   $template = undef,
 ) {
-  require autoconfig
+  include autoconfig
 
   $server_name = "autoconfig.${domain}"
   $mailserver = "mail.${domain}"
