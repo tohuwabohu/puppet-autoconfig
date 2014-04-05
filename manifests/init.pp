@@ -11,6 +11,12 @@
 # [*config_dir*]
 #   Set the directory which will contain the web server configuration
 #
+# [*apache_config_file*]
+#   Set the path where to write the apache configuration
+#
+# [*nginx_config_file*]
+#   Set the path where to write the nginx configuration
+#
 # === Authors
 #
 # Martin Meinhold <Martin.Meinhold@gmx.de>
@@ -22,12 +28,20 @@
 class autoconfig(
   $www_root   = params_lookup('www_root'),
   $config_dir = params_lookup('config_dir'),
+  $apache_config_file = undef,
+  $nginx_config_file = undef,
 ) inherits autoconfig::params {
   validate_absolute_path($www_root)
   validate_absolute_path($config_dir)
 
-  $apache_config = "${config_dir}/apache.conf"
-  $nginx_config = "${config_dir}/nginx.conf"
+  $real_apache_config = empty($apache_config_file) ? {
+    false   => $apache_config_file,
+    default => "${config_dir}/apache.conf",
+  }
+  $real_nginx_config = empty($nginx_config_file) ? {
+    false   => $nginx_config_file,
+    default => "${config_dir}/nginx.conf",
+  }
 
   file { $config_dir:
     ensure  => directory,
@@ -38,13 +52,13 @@ class autoconfig(
     mode    => '0644',
   }
 
-  concat { $apache_config:
+  concat { $real_apache_config:
     owner => 'root',
     group => 'root',
     mode  => '0644',
   }
 
-  concat { $nginx_config:
+  concat { $real_nginx_config:
     owner => 'root',
     group => 'root',
     mode  => '0644',

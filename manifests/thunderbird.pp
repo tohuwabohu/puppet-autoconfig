@@ -56,12 +56,12 @@ define autoconfig::thunderbird(
   }
 
   concat::fragment { "autoconfig_${domain}_apache":
-    target  => $autoconfig::apache_config,
+    target  => $autoconfig::real_apache_config,
     content => template('autoconfig/thunderbird/apache.conf.erb'),
   }
 
   concat::fragment { "autoconfig_${domain}_nginx":
-    target  => $autoconfig::nginx_config,
+    target  => $autoconfig::real_nginx_config,
     content => template('autoconfig/thunderbird/nginx.conf.erb'),
   }
 }
