@@ -5,6 +5,14 @@
 #
 # See https://developer.mozilla.org/en-US/docs/Mozilla/Thunderbird/Autoconfiguration
 #
+# === Parameters
+#
+# [*domain*]
+#   Set the name of the domain to be auto-configured
+#
+# [*template*]
+#   Use a custom template for the config file (config-v1.1.xml)
+#
 # === Authors
 #
 # Martin Meinhold <Martin.Meinhold@gmx.de>
@@ -13,12 +21,19 @@
 #
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
-define autoconfig::thunderbird($domain = $name) {
+define autoconfig::thunderbird(
+  $domain = $name,
+  $template = undef,
+) {
   require autoconfig
 
   $server_name = "autoconfig.${domain}"
   $mailserver = "mail.${domain}"
   $document_root = "${autoconfig::www_root}/${server_name}"
+  $real_template = empty($template) ? {
+    true    => 'autoconfig/thunderbird/config-v1.1.xml.erb',
+    default => $template,
+  }
 
   File {
     owner  => 'root',
@@ -37,7 +52,7 @@ define autoconfig::thunderbird($domain = $name) {
   }
 
   file { "${document_root}/mail/config-v1.1.xml":
-    content => template('autoconfig/thunderbird/config-v1.1.xml.erb'),
+    content => template($real_template),
   }
 
   concat::fragment { "autoconfig_${domain}_apache":

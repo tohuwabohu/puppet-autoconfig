@@ -17,6 +17,14 @@ Enable the domain configuration in your web server by linking to the correspondi
 (e.g. `/etc/autoconfig/apache.conf`). Make sure the subdomain `autoconfig.example.com` is pointing to the host where
 your web server is running.
 
+To use a custom `config-v1.1.xml`, you can use
+
+```
+autoconfig::thunderbird { 'example.com':
+  template => 'path/to/custom/template',
+}
+```
+
 ##Limitations
 
 The module has been tested on the following operating systems. Testing and patches for other platforms are welcome.
