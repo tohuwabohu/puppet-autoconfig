@@ -8,5 +8,5 @@ description ''
 project_page 'https://github.com/tohuwabohu/tohuwabohu-autoconfig'
 
 dependency 'puppetlabs/stdlib', '4.x'
-dependency 'puppetlabs-concat', '1.x'
+dependency 'puppetlabs/concat', '1.x'
 dependency 'example42/puppi', '2.x'
