@@ -7,7 +7,7 @@ Puppet module to provide auto-discovery functionality for clients of certain ser
 
 ##Usage
 
-Setup the Thunderbird auto-discovery for a given domain
+Setup the Thunderbird auto-configuration for a given domain
 
 ```
 autoconfig::thunderbird { 'example.com': }
