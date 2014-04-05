@@ -25,6 +25,14 @@ autoconfig::thunderbird { 'example.com':
 }
 ```
 
+Furthermore, you want to notify your web server when the autoconfig web server configuration changes
+
+```
+class { 'autoconfig':
+  notify => Service['apache'],
+}
+```
+
 ##Limitations
 
 The module has been tested on the following operating systems. Testing and patches for other platforms are welcome.
