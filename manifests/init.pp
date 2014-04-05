@@ -56,11 +56,13 @@ class autoconfig(
     owner => 'root',
     group => 'root',
     mode  => '0644',
+    force => true,
   }
 
   concat { $real_nginx_config:
     owner => 'root',
     group => 'root',
     mode  => '0644',
+    force => true,
   }
 }
