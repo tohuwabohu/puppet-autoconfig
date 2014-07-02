@@ -26,10 +26,10 @@
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
 class autoconfig(
-  $www_root   = params_lookup('www_root'),
-  $config_dir = params_lookup('config_dir'),
+  $www_root           = $autoconfig::params::www_root,
+  $config_dir         = $autoconfig::params::config_dir,
   $apache_config_file = undef,
-  $nginx_config_file = undef,
+  $nginx_config_file  = undef,
 ) inherits autoconfig::params {
   validate_absolute_path($www_root)
   validate_absolute_path($config_dir)

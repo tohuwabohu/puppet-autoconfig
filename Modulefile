@@ -7,6 +7,5 @@ summary 'Manage auto-discovery for service clients'
 description ''
 project_page 'https://github.com/tohuwabohu/puppet-autoconfig'
 
-dependency 'puppetlabs/stdlib', '4.x'
 dependency 'puppetlabs/concat', '1.x'
-dependency 'example42/puppi', '2.x'
+dependency 'puppetlabs/stdlib', '4.x'
