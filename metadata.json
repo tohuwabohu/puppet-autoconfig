@@ -1,0 +1,26 @@
+{
+    "name": "tohuwabohu-autoconfig",
+    "version": "1.0.2",
+    "author": "Martin Meinhold",
+    "license": "Apache License, Version 2.0",
+    "summary": "Manage auto-discovery for service clients",
+    "source": "https://github.com/tohuwabohu/puppet-autoconfig.git",
+    "project_page": "https://github.com/tohuwabohu/puppet-autoconfig",
+    "issues_url": "https://github.com/tohuwabohu/puppet-autoconfig/issues",
+    "operatingsystem_support": [
+        {
+            "operatingsystem": "Debian",
+            "operatingsystemrelease": [ "6.0" ]
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "puppetlabs/concat",
+            "version_requirement": "1.x"
+        },
+        {
+            "name": "puppetlabs/stdlib",
+            "version_requirement": "4.x"
+        }
+    ]
+}
