@@ -1,5 +1,5 @@
 name 'tohuwabohu-autoconfig'
-version '1.0.1'
+version '1.0.2'
 source 'https://github.com/tohuwabohu/puppet-autoconfig.git'
 author 'Martin Meinhold'
 license 'Apache License, Version 2.0'
