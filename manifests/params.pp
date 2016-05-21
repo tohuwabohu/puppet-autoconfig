@@ -14,4 +14,6 @@ class autoconfig::params {
   $www_root = $::operatingsystem ? {
     default => '/var/www/autoconfig'
   }
+
+  $thunderbird_subdomain = 'autoconfig.'
 }

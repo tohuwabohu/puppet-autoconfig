@@ -30,7 +30,7 @@ define autoconfig::thunderbird (
 
   include autoconfig
 
-  $server_name = "autoconfig.${domain}"
+  $server_name = "${autoconfig::params::thunderbird_subdomain}${domain}"
   $mailserver = "mail.${domain}"
   $document_root = "${autoconfig::www_root}/${server_name}"
   $ensure_config_dir = $ensure ? {
