@@ -21,7 +21,7 @@
 #
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
-define autoconfig::thunderbird(
+define autoconfig::thunderbird (
   $ensure   = present,
   $domain   = $name,
   $template = undef,

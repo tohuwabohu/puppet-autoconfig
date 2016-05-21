@@ -25,7 +25,7 @@
 #
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
-class autoconfig(
+class autoconfig (
   $www_root           = $autoconfig::params::www_root,
   $config_dir         = $autoconfig::params::config_dir,
   $apache_config_file = undef,
