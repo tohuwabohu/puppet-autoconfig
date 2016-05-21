@@ -2,4 +2,4 @@ RewriteEngine on
 RewriteBase /
 
 RewriteCond %{ENV:REDIRECT_STATUS} !200
-RewriteRule ^(.*) %{DOCUMENT_ROOT}/%{HTTP_HOST}/$1 [L,NC]
+RewriteRule ^(.*) %{DOCUMENT_ROOT}/%{HTTP_HOST}/$1 [L]
