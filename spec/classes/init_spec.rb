@@ -7,30 +7,20 @@ describe 'autoconfig' do
   describe 'by default' do
     let(:params) { {} }
 
-    it { should contain_file('/etc/autoconfig') }
-    it { should contain_concat('/etc/autoconfig/apache.conf') }
-    it { should contain_concat('/etc/autoconfig/nginx.conf') }
+    it { should contain_file('/var/www/autoconfig') }
+    it { should contain_file('/var/www/autoconfig/.htaccess') }
   end
 
   describe 'with custom config_dir' do
-    let(:params) { {:config_dir => '/different/path'} }
+    let(:params) { {:www_root => '/different/path'} }
 
     it { should contain_file('/different/path') }
-    it { should contain_concat('/different/path/apache.conf') }
-    it { should contain_concat('/different/path/nginx.conf') }
+    it { should contain_file('/different/path/.htaccess') }
   end
 
-  describe 'with custom apache_config_file' do
-    let(:params) { {:apache_config_file => '/path/to/apache.conf'} }
+  describe 'with custom domain' do
+    let(:params) { {:domains => [ 'example.com' ]} }
 
-    it { should contain_concat('/path/to/apache.conf') }
-    it { should contain_concat('/etc/autoconfig/nginx.conf') }
-  end
-
-  describe 'with custom nginx_config_file' do
-    let(:params) { {:nginx_config_file => '/path/to/nginx.conf'} }
-
-    it { should contain_concat('/etc/autoconfig/apache.conf') }
-    it { should contain_concat('/path/to/nginx.conf') }
+    it { should contain_autoconfig__thunderbird('example.com') }
   end
 end
