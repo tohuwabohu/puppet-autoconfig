@@ -21,6 +21,16 @@ class autoconfig (
 ) inherits autoconfig::params {
   validate_absolute_path($www_root)
 
+  file { $www_root:
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    purge   => true,
+    recurse => true,
+    force   => true,
+  }
+
   file { "${www_root}/.htaccess":
     ensure  => file,
     content => template('autoconfig/htaccess.erb'),
