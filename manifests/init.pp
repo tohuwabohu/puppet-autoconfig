@@ -8,6 +8,9 @@
 #   Set the www root directory where the files served by the web server
 #   are stored
 #
+# [*domains*]
+#   Set a list of domains for which the autoconfiguration should be activated.
+#
 # === Authors
 #
 # Martin Meinhold <Martin.Meinhold@gmx.de>
@@ -18,6 +21,7 @@
 #
 class autoconfig (
   $www_root = $autoconfig::params::www_root,
+  $domains  = [],
 ) inherits autoconfig::params {
   validate_absolute_path($www_root)
 
@@ -38,4 +42,6 @@ class autoconfig (
     group   => 'root',
     mode    => '0444',
   }
+
+  autoconfig::thunderbird { $domains: }
 }

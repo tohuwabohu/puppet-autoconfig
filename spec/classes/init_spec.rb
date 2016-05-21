@@ -17,4 +17,10 @@ describe 'autoconfig' do
     it { should contain_file('/different/path') }
     it { should contain_file('/different/path/.htaccess') }
   end
+
+  describe 'with custom domain' do
+    let(:params) { {:domains => [ 'example.com' ]} }
+
+    it { should contain_autoconfig__thunderbird('example.com') }
+  end
 end
