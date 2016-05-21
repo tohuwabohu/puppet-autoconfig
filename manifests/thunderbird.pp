@@ -75,12 +75,12 @@ define autoconfig::thunderbird (
   concat::fragment { "autoconfig_${domain}_apache":
     ensure  => $ensure_config_fragment,
     target  => $autoconfig::real_apache_config,
-    content => template('autoconfig/thunderbird/apache.conf.erb'),
+    content => template('autoconfig/vhost/apache.conf.erb'),
   }
 
   concat::fragment { "autoconfig_${domain}_nginx":
     ensure  => $ensure_config_fragment,
     target  => $autoconfig::real_nginx_config,
-    content => template('autoconfig/thunderbird/nginx.conf.erb'),
+    content => template('autoconfig/vhost/nginx.conf.erb'),
   }
 }
