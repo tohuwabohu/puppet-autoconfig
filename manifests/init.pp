@@ -41,6 +41,7 @@ class autoconfig (
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
+    backup  => false,
   }
 
   autoconfig::thunderbird { $domains: }
