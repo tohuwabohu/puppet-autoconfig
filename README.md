@@ -2,22 +2,23 @@
 
 ##Overview
 
-Puppet module to provide auto-discovery functionality for clients of certain services. At the moment, the module supports only
-[Autoconfiguration for Thunderbird](https://developer.mozilla.org/en-US/docs/Mozilla/Thunderbird/Autoconfiguration).
+Puppet module to provide auto-discovery functionality for clients of certain services. At the moment, the module
+supports only [Autoconfiguration for Thunderbird](https://developer.mozilla.org/en-US/docs/Mozilla/Thunderbird/Autoconfiguration).
 
 ##Usage
 
-Setup the Thunderbird auto-configuration for a given domain
+Setup the Thunderbird auto-configuration for a given domain. This will create all required files on disk which are
+expected by Thunderbird when looking up the mail server configuration settings for the email domain `example.com`:
 
 ```
 autoconfig::thunderbird { 'example.com': }
 ```
 
-Enable the domain configuration in your web server by linking to the corresponding file in the configuration directory
-(e.g. `/etc/autoconfig/apache.conf`). Make sure the subdomain `autoconfig.example.com` is pointing to the host where
-your web server is running.
+In order to make the configuration on disk accessible to Thunderbird, a web server vhost has to be provided which will
+accept requests for the `autoconfig.example.com` domain and serve the content created by this module. The vhost
+configuration is covered in the next section.
 
-To use a custom `config-v1.1.xml`, you can use
+To use a custom mail server configuration you can provide your own file template via
 
 ```
 autoconfig::thunderbird { 'example.com':
@@ -25,13 +26,31 @@ autoconfig::thunderbird { 'example.com':
 }
 ```
 
-Furthermore, you want to notify your web server when the autoconfig web server configuration changes
+##Vhost configuration
+
+The module relies on a `.htaccess` file which maps multiple vhosts to one common directory structure. If you're using
+the [puppetlabs/apache](https://forge.puppetlabs.com/puppetlabs/apache) module, the following vhost would work
 
 ```
-class { 'autoconfig':
-  notify => Service['apache'],
+$domains = [
+  'foo.com',
+  'bar.com',
+]
+
+$autoconfig_domains = prefix($domains, $autoconfig::params::thunderbird_subdomain)
+
+apache::vhost { $autoconfig_domains:
+  port           => '80',
+  serveradmin    => 'root@example.com',
+  docroot        => $autoconfig::www_root,
+  manage_docroot => false,
+  access_log     => false,
+  error_log_file => 'vhost_autoconfig_error.log',
 }
 ```
+
+This will make the email configuration for `foo.com` and `bar.com` available to Thunderbird.
+
 
 ##Limitations
 
