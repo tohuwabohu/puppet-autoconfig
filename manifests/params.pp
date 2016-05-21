@@ -12,10 +12,6 @@
 #
 class autoconfig::params {
   $www_root = $::operatingsystem ? {
-    default => '/var/www'
-  }
-
-  $config_dir = $::operatingsystem ? {
-    default => '/etc/autoconfig'
+    default => '/var/www/autoconfig'
   }
 }
