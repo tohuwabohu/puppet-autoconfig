@@ -13,10 +13,6 @@ describe 'autoconfig::thunderbird' do
   describe 'with ensure absent' do
     let(:params) { {:ensure => 'absent'} }
 
-    it { should contain_file('/var/www/autoconfig/autoconfig.example.com').with(
-        'ensure' => 'absent',
-        'force'  => true
-      )
-    }
+    it { should contain_file('/var/www/autoconfig/autoconfig.example.com').with_ensure('absent') }
   end
 end

@@ -50,25 +50,25 @@ define autoconfig::thunderbird (
     default => present,
   }
 
-  File {
+  file { $document_root:
+    ensure => $ensure_config_dir,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
   }
 
-  file { $document_root:
-    ensure  => $ensure_config_dir,
-    purge   => true,
-    recurse => true,
-    force   => true,
-  }
-
   file { "${document_root}/mail":
-    ensure => $ensure_config_dir
+    ensure => $ensure_config_dir,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   file { "${document_root}/mail/config-v1.1.xml":
     ensure  => $ensure_config_file,
     content => template($real_template),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
   }
 }
