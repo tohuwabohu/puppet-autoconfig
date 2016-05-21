@@ -44,6 +44,8 @@ apache::vhost { $autoconfig_domains:
   serveradmin    => 'root@example.com',
   docroot        => $autoconfig::www_root,
   manage_docroot => false,
+  options        => [ 'FollowSymLinks' ],
+  override       => [ 'All' ],
   access_log     => false,
   error_log_file => 'vhost_autoconfig_error.log',
 }
