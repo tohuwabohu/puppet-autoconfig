@@ -1,11 +1,11 @@
-#autoconfig
+# autoconfig
 
-##Overview
+## Overview
 
 Puppet module to provide auto-discovery functionality for clients of certain services. At the moment, the module
 supports only [Autoconfiguration for Thunderbird](https://developer.mozilla.org/en-US/docs/Mozilla/Thunderbird/Autoconfiguration).
 
-##Usage
+## Usage
 
 Setup the Thunderbird auto-configuration for a given domain. This will create all required files on disk which are
 expected by Thunderbird when looking up the mail server configuration settings for the email domain `example.com`:
@@ -26,7 +26,7 @@ autoconfig::thunderbird { 'example.com':
 }
 ```
 
-##Vhost configuration
+## Vhost configuration
 
 The module relies on a `.htaccess` file which maps multiple vhosts to one common directory structure. If you're using
 the [puppetlabs/apache](https://forge.puppetlabs.com/puppetlabs/apache) module, the following vhost would work
@@ -54,7 +54,7 @@ apache::vhost { $autoconfig_domains:
 This will make the email configuration for `foo.com` and `bar.com` available to Thunderbird.
 
 
-##Limitations
+## Limitations
 
 The module has been tested on the following operating systems. Testing and patches for other platforms are welcome.
 
@@ -62,7 +62,7 @@ The module has been tested on the following operating systems. Testing and patch
 
 [![Build Status](https://travis-ci.org/tohuwabohu/puppet-autoconfig.png?branch=master)](https://travis-ci.org/tohuwabohu/puppet-autoconfig)
 
-##Contributing
+## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
