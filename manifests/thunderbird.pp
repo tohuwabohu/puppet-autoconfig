@@ -22,12 +22,10 @@
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
 define autoconfig::thunderbird (
-  $ensure   = present,
-  $domain   = $name,
-  $template = undef,
+  Enum[present,absent] $ensure = present,
+  String $domain = $name,
+  Optional[String] $template = undef,
 ) {
-  validate_re($ensure, '^present|absent$')
-
   include autoconfig
 
   $server_name = "${autoconfig::params::thunderbird_subdomain}${domain}"

@@ -20,11 +20,9 @@
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
 class autoconfig (
-  $www_root = $autoconfig::params::www_root,
-  $domains  = [],
+  Stdlib::Absolutepath $www_root = $autoconfig::params::www_root,
+  Array[String] $domains = [],
 ) inherits autoconfig::params {
-  validate_absolute_path($www_root)
-
   file { $www_root:
     ensure  => directory,
     owner   => 'root',
