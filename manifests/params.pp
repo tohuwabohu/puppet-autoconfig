@@ -11,7 +11,7 @@
 # Copyright 2014 Martin Meinhold, unless otherwise noted.
 #
 class autoconfig::params {
-  $www_root = $::operatingsystem ? {
+  $www_root = $facts['os']['family'] ? {
     default => '/var/www/autoconfig'
   }
 
